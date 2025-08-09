@@ -1,0 +1,22 @@
+<!-- Conteneur du Sidebar -->
+<div class="sidebar" [ngClass]="{ 'fermé': !sidebarOuvert() }">
+  <!-- Bouton pour ouvrir/fermer le Sidebar -->
+  <button class="toggle-btn" (click)="toggleSidebar()">
+    <i class="pi" [ngClass]="sidebarOuvert() ? 'pi-angle-left' : 'pi-angle-right'"></i>
+  </button>
+
+  <!-- Liste des menus -->
+  <ul>
+    @for (item of menuItems; track item) {
+      <li>
+        <a [routerLink]="item.routerLink">
+          <i [class]="'pi ' + item.icon"></i>
+          @if (item.label && sidebarOuvert()) {
+            <span>{{ item.label }}</span>
+          }
+        </a>
+      </li>
+    }
+  </ul>
+</div>
+

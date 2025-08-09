@@ -20,7 +20,10 @@
             "input": "apps/assistante-maternelle/public"
           }
         ],
-        "styles": ["apps/assistante-maternelle/src/styles.css"]
+        "styles": ["node_modules/primeng/resources/themes/lara-light-indigo/theme.css",
+          "node_modules/primeng/resources/primeng.min.css",
+          "node_modules/primeicons/primeicons.css",
+          "apps/assistante-maternelle/src/styles.css"]
       },
       "configurations": {
         "production": {

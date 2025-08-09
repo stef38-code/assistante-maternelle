@@ -4,24 +4,26 @@
 
 == Etape 1
 
-creation d'un lib ui pour la gestion des composants commun.
-- le premier contenu dans ui sera le layout de l'application.
+Création d'un lib ui pour la gestion des composants commun.
+
+- Le premier contenu dans ui sera le layout de l'application.
 Il sera composé des composants suivants :
-- header : titre de l'application : 'Gestion des contrats d'une assistante maternelle'
-- sidebar : à gauche , retractable. contiendra les menus/sous-menu des actions possible
-- content : contiendra router-outlet
-- footer : la date du jour à gauche et l'heure à droite
+
+  –- header : titre de l'application : 'Gestion des contrats d'une assistante maternelle'.
+  -- sidebar : à gauche , retractable. contiendra les menus/sous-menu des actions possible
+  -- content : contiendra router-outlet
+  -- footer : la date du jour à gauche et l'heure à droite
 
 [source,bash]
 ====
   # Création de la lib ui
   npx nx g @nx/angular:lib ui
   # Création des composants
-  npx nx g @nx/angular:component --path=ui/src/lib/layout
-  npx nx g @nx/angular:component --path=ui/src/lib/header
-  npx nx g @nx/angular:component --path=ui/src/lib/sidebar
-  npx nx g @nx/angular:component --path=ui/src/lib/content
-  npx nx g @nx/angular:component --path=ui/src/lib/footer
+  npx nx g @nx/angular:component --path=ui/src/lib/ui/layout/layout
+  npx nx g @nx/angular:component --path=ui/src/lib/ui/layout/header/header
+  npx nx g @nx/angular:component --path=ui/src/lib/ui/layout/sidebar/sidebar
+  npx nx g @nx/angular:component --path=ui/src/lib/ui/layout/content/content
+  npx nx g @nx/angular:component --path=ui/src/lib/ui/layout/footer/footer
 
 ====
 

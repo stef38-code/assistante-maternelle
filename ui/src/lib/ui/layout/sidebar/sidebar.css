@@ -1,0 +1,53 @@
+/* Conteneur du Sidebar */
+.sidebar {
+  width: 250px;
+  height: 100%;
+  position: relative; /* Le bouton sera positionné par rapport au Sidebar */
+  background-color: #004d40;
+  color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Sidebar fermé */
+.sidebar.fermé {
+  width: 80px;
+}
+
+/* Bouton de bascule */
+.toggle-btn {
+  position: absolute; /* Positionnement par rapport au Sidebar */
+  top: 10px;
+  right: -15px; /* Place le bouton à l'extérieur du Sidebar */
+  z-index: 100; /* Assure que le bouton est au-dessus d'autres éléments */
+  /*background-color: #00796b;*/
+  border: none;
+  /*color: white;*/
+  font-size: 18px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%; /* Bouton rond */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre pour meilleure visibilité */
+}
+
+.toggle-btn:hover {
+  background-color: #005a4c;
+}
+
+/* Liste de navigation */
+.sidebar ul {
+  margin-top: 0px;
+  list-style: none;
+  padding: 15px 10px;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
