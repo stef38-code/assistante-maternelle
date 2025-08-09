@@ -1,0 +1,111 @@
+= AssistanteMaternelle
+
+
+
+== Etape 1
+## Première étape
+
+creation d'un lib ui pour la gestion des composants commun.
+- le premier contenu dans ui sera le layout de l'application.
+Il sera composé des composants suivants :
+- header : titre de l'application : 'Gestion des contrats d'une assistante maternelle'
+- sidebar : à gauche , retractable. contiendra les menus/sous-menu des actions possible
+- content : contiendra router-outlet
+- footer : la date du jour à gauche et l'heure à droite
+
+[source,bash]
+====
+  # Création de la lib ui
+  npx nx g @nx/angular:lib ui
+  # Création des composants
+  npx nx g @nx/angular:component --path=ui/src/lib/layout
+  npx nx g @nx/angular:component --path=ui/src/lib/header
+  npx nx g @nx/angular:component --path=ui/src/lib/sidebar
+  npx nx g @nx/angular:component --path=ui/src/lib/content
+  npx nx g @nx/angular:component --path=ui/src/lib/footer
+
+====
+
+
+
+✨ Your new, shiny https://nx.dev[Nx workspace] is almost ready ✨.
+
+https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects[Learn more about this workspace setup and its capabilities] or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+
+== Finish your remote caching setup
+
+https://cloud.nx.app/connect/iP3FS2G5sA[Click here to finish setting up your workspace!]
+
+== Run tasks
+
+To run the dev server for your app, use:
+
+[source,sh]
+----
+npx nx serve assistante-maternelle
+----
+
+To create a production bundle:
+
+[source,sh]
+----
+npx nx build assistante-maternelle
+----
+
+To see all available targets to run for a project, run:
+
+[source,sh]
+----
+npx nx show project assistante-maternelle
+----
+
+These targets are either https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[inferred automatically] or defined in the `project.json` or `package.json` files.
+
+https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[More about running tasks in the docs &raquo;]
+
+== Add new projects
+
+While you could add new projects to your workspace manually, you might want to leverage https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[Nx plugins] and their https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[code generation] feature.
+
+Use the plugin's generator to create new projects.
+
+To generate a new application, use:
+
+[source,sh]
+----
+npx nx g @nx/angular:app demo
+----
+
+To generate a new library, use:
+
+[source,sh]
+----
+npx nx g @nx/angular:lib mylib
+----
+
+You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[install Nx Console] to browse plugins and generators in your IDE.
+
+https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[Learn more about Nx plugins &raquo;] | https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[Browse the plugin registry &raquo;]
+
+https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[Learn more about Nx on CI]
+
+== Install Nx Console
+
+Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+
+https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[Install Nx Console &raquo;]
+
+== Useful links
+
+Learn more:
+
+* https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects[Learn more about this workspace setup]
+* https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[Learn about Nx on CI]
+* https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[Releasing Packages with Nx release]
+* https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[What are Nx plugins?]
+
+And join the Nx community:
+- https://go.nx.dev/community[Discord]
+- https://twitter.com/nxdevtools[Follow us on X] or https://www.linkedin.com/company/nrwl[LinkedIn]
+- https://www.youtube.com/@nxdevtools[Our Youtube channel]
+- https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects[Our blog]
