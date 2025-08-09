@@ -3,7 +3,6 @@
 
 
 == Etape 1
-## Première étape
 
 creation d'un lib ui pour la gestion des composants commun.
 - le premier contenu dans ui sera le layout de l'application.
