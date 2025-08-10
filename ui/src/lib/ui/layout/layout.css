@@ -14,10 +14,9 @@
 /* Header */
 lib-header {
   grid-area: header;
-  background-color: #00796b;
-  color: white;
   text-align: center;
   padding: 10px 0;
+  border: 1px solid #ccc; /* Ajout d'une bordure grise */
 }
 
 /* Content */
@@ -25,13 +24,15 @@ lib-content {
   grid-area: content;
   overflow-y: auto;
   padding: 20px;
+  border: 1px solid #ccc; /* Ajout d'une bordure grise */
 }
-
+lib-sidebar{
+  border: 1px solid #ccc; /* Ajout d'une bordure grise */
+}
 /* Footer */
 lib-footer {
   grid-area: footer;
-  background-color: #00796b;
-  color: white;
   text-align: center;
   padding: 10px;
+  border: 1px solid #ccc; /* Ajout d'une bordure grise */
 }

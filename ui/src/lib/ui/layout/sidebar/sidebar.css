@@ -3,9 +3,11 @@
   width: 250px;
   height: 100%;
   position: relative; /* Le bouton sera positionné par rapport au Sidebar */
-  background-color: #004d40;
-  color: white;
   transition: width 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
 }
 
 /* Sidebar fermé */
@@ -19,9 +21,7 @@
   top: 10px;
   right: -15px; /* Place le bouton à l'extérieur du Sidebar */
   z-index: 100; /* Assure que le bouton est au-dessus d'autres éléments */
-  /*background-color: #00796b;*/
   border: none;
-  /*color: white;*/
   font-size: 18px;
   padding: 10px;
   cursor: pointer;
@@ -29,15 +29,19 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre pour meilleure visibilité */
 }
 
-.toggle-btn:hover {
-  background-color: #005a4c;
-}
-
 /* Liste de navigation */
 .sidebar ul {
-  margin-top: 0px;
+  margin-top: 0;
   list-style: none;
   padding: 15px 10px;
+  display: flex;
+  flex-direction: column; /* Empile verticalement les éléments */
+  gap: 15px; /* Espacement entre chaque item */
+
+}
+/* Quand le Sidebar est fermé, centre les icônes */
+.sidebar.fermé ul {
+  align-items: center; /* Centre les icônes horizontalement */
 }
 
 .sidebar ul li {
@@ -46,8 +50,9 @@
 
 .sidebar ul li a {
   text-decoration: none;
-  color: white;
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 16px;
+  transition: color 0.2s;
 }
