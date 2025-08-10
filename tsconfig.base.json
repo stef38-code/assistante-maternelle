@@ -15,6 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@assistante-maternelle/contrat": ["contrat/src/index.ts"],
+      "@assistante-maternelle/core": ["core/src/index.ts"],
+      "@assistante-maternelle/enfant": ["enfant/src/index.ts"],
+      "@assistante-maternelle/infrastructure": ["infrastructure/src/index.ts"],
+      "@assistante-maternelle/parent": ["parent/src/index.ts"],
       "@assistante-maternelle/ui": ["ui/src/index.ts"]
     }
   },

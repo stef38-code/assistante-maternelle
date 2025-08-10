@@ -26,7 +26,85 @@ Il sera composé des composants suivants :
   npx nx g @nx/angular:component --path=ui/src/lib/ui/layout/footer/footer
 
 ====
+== Etape 2
+Création des features
 
+[source,bash]
+====
+  # Création de la lib contrat
+  npx nx g @nx/angular:lib contrat --unitTestRunner=jest --prefix=contrat
+  # Création de la lib parent
+  npx nx g @nx/angular:lib parent --unitTestRunner=jest --prefix=parent
+  # Création de la lib enfant
+  npx nx g @nx/angular:lib enfant --unitTestRunner=jest --prefix=enfant
+  # Création de la lib infrastructure
+  npx nx g @nx/angular:lib infrastructure --unitTestRunner=jest --prefix=infrastructure
+  # Création de la lib core
+  npx nx g @nx/angular:lib core --unitTestRunner=jest --prefix=core
+====
+
+== Etape 3
+
+Création d'un enfant dans la librairie 'enfant'
+un enfant peut être lié à 1 ou 2 parents.
+Il doit avoir comme informations :
+
+* Genre (champ obligatoire)
+  ** Garçon,
+  ** Fille,
+* Nom (champ obligatoire),
+* Prénom (champ obligatoire),
+* Date de naissance (champ obligatoire) :
+  ** un champ de saisie
+  ** un champ qui affiche l'âge calculé depuis la date du jour si l'enfant à moins d'un an alors, on affiche uniquement le nombre de mois sinon nombre d'années et les mois de l'année en cours
+
+Afficher la liste des enfants avec la possibilité d'ajouter/modifier(création d'une dialogue de saisie )
+
+Création d'un parent dans la librairie 'parent'
+un parent peut être lié à 1 ou plusieurs enfants.
+Il doit avoir comme informations :
+
+* Genre (champ obligatoire)
+  ** Homme,
+  ** Femme,
+* Nom (champ obligatoire),
+* Prénom (champ obligatoire),
+* Email,
+* Téléphones
+  ** perso (champ obligatoire),
+  ** pro
+
+Afficher la liste des parents avec la possibilité d'ajouter/modifier(création d'une dialogue de saisie )
+
+
+
+== Etape 4
+Dans la librairie contrat
+
+- le contrat est lié avec 1 à 2 parents et uniquement à un seul enfant.
+- le contrat contient
+- une date de début,
+- une date de fin à null par défaut,
+- un tarif horaire,
+- le nombre d'heures de garde par semaine,
+- le nombre jours de semaine de garde prévu,
+- un tarif pour les repas,
+- un tarif pour le goûté,
+- un tarif indemnité d'entretien,
+- Le tarif de la mensualisation.
+
+Le contrat peut avoir des avenants avec les mêmes informations :
+
+- une date de début,
+- une date de fin à null par défaut,
+- un tarif horaire,
+- le nombre d'heures de garde par semaine,
+- le nombre jours de semaine de garde prévu,
+- un tarif pour les repas,
+- un tarif pour le goûté,
+- un tarif indemnité d'entretien,
+- Le tarif de la mensualisation.
+si avenants alors, il s'applique à partir de la date de début de l'avenant
 
 
 ✨ Your new, shiny https://nx.dev[Nx workspace] is almost ready ✨.
