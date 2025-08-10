@@ -2,7 +2,7 @@ import { Component, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'lib-footer',
+  selector: 'ui-footer',
   imports: [CommonModule],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
@@ -22,5 +22,4 @@ export class Footer {
       }, 1000);
     });
   }
-
 }

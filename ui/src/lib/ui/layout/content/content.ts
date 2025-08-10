@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'lib-content',
+  selector: 'ui-content',
   imports: [CommonModule, RouterOutlet],
   templateUrl: './content.html',
   styleUrl: './content.css',

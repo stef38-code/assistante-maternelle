@@ -12,10 +12,24 @@ describe('Header', () => {
 
     fixture = TestBed.createComponent(Header);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('devrait être créé', () => {
+    fixture.componentRef.setInput('title', 'Titre');
+    fixture.detectChanges();
     expect(component).toBeTruthy();
+  });
+
+  it('devrait avoir un titre par défaut', () => {
+    fixture.componentRef.setInput('title', 'Titre');
+    fixture.detectChanges();
+    expect(component.title).toBeDefined();
+  });
+
+  it("devrait mettre à jour le titre lorsqu'il est défini", () => {
+    const newTitle = 'Test Title';
+    fixture.componentRef.setInput('title', newTitle);
+    fixture.detectChanges();
+    expect(component.title()).toContain(newTitle);
   });
 });

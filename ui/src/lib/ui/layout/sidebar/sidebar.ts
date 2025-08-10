@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'lib-sidebar',
+  selector: 'ui-sidebar',
   templateUrl: './sidebar.html',
   imports: [RouterLink, NgClass],
   styleUrls: ['./sidebar.css'],

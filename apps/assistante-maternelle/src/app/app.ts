@@ -9,5 +9,5 @@ import { Layout } from '@assistante-maternelle/ui';
   styleUrl: './app.css',
 })
 export class App {
-  protected title = 'assistante-maternelle';
+  protected title = "Gestion des contrats d'une assistante maternelle";
 }

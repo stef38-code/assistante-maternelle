@@ -12,7 +12,7 @@
 }
 
 /* Header */
-lib-header {
+ui-header {
   grid-area: header;
   text-align: center;
   padding: 10px 0;
@@ -20,17 +20,17 @@ lib-header {
 }
 
 /* Content */
-lib-content {
+ui-content {
   grid-area: content;
   overflow-y: auto;
   padding: 20px;
   border: 1px solid #ccc; /* Ajout d'une bordure grise */
 }
-lib-sidebar{
+ui-sidebar{
   border: 1px solid #ccc; /* Ajout d'une bordure grise */
 }
 /* Footer */
-lib-footer {
+ui-footer {
   grid-area: footer;
   text-align: center;
   padding: 10px;
