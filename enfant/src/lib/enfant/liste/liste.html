@@ -1,0 +1,30 @@
+<p-button label="Ajouter un enfant" icon="pi pi-plus"
+          onKeyDown="openDialog()"
+          (click)="openDialog()"></p-button>
+<p-table [value]="enfants()">
+  <ng-template pTemplate="header">
+    <tr>
+      <th scope="col">Genre</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Date de Naissance</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-enfant>
+    <tr>
+      <td>{{ enfant.genre }}</td>
+      <td>{{ enfant.nom }}</td>
+      <td>{{ enfant.prenom }}</td>
+      <td>{{ enfant.dateNaissance | date: 'dd/MM/yyyy' }}</td>
+      <td>
+        <p-button label="Modifier"
+                  icon="pi pi-pencil"
+                  onKeyDown="openDialog(enfant)"
+                  (click)="openDialog(enfant)"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+

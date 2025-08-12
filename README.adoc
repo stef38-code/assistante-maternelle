@@ -44,7 +44,7 @@ Création des features
 ====
 
 == Etape 3
-
+=== Enfant
 Création d'un enfant dans la librairie 'enfant'
 un enfant peut être lié à 1 ou 2 parents.
 Il doit avoir comme informations :
@@ -59,7 +59,13 @@ Il doit avoir comme informations :
   ** un champ qui affiche l'âge calculé depuis la date du jour si l'enfant à moins d'un an alors, on affiche uniquement le nombre de mois sinon nombre d'années et les mois de l'année en cours
 
 Afficher la liste des enfants avec la possibilité d'ajouter/modifier(création d'une dialogue de saisie )
+[source,bash]
+====
+  npx nx g @nx/angular:component --path=enfant/src/lib/enfant/liste/liste
+  npx nx g @nx/angular:component --path=enfant/src/lib/enfant/formulaire/formulaire
+====
 
+=== Parent
 Création d'un parent dans la librairie 'parent'
 un parent peut être lié à 1 ou plusieurs enfants.
 Il doit avoir comme informations :
@@ -106,6 +112,10 @@ Le contrat peut avoir des avenants avec les mêmes informations :
 - Le tarif de la mensualisation.
 si avenants alors, il s'applique à partir de la date de début de l'avenant
 
+
+== Ressources :
+
+* https://www.sfeir.dev/front/angular-forms-destructurer-pour-mieux-structurer/[angular-forms-destructurer-pour-mieux-structurer][angular-forms-destructurer-pour-mieux-structurer]
 
 ✨ Your new, shiny https://nx.dev[Nx workspace] is almost ready ✨.
 

@@ -1,0 +1,33 @@
+<form [formGroup]="form">
+  <div>
+    <p-selectbutton
+      [options]="[{ label: 'Garçon', value: 'Garçon' }, { label: 'Fille', value: 'Fille' }]"
+      formControlName="genre" optionLabel="Sélectionner un genre" optionValue="value" [disabled]="true"></p-selectbutton>
+  </div>
+  <div>
+    <p-floatlabel variant="on">
+      <input pInputText id="on_nom" formControlName="nom" autocomplete="off" />
+      <label for="on_nom">Nom</label>
+    </p-floatlabel>
+  </div>
+  <div>
+    <p-floatlabel variant="on">
+      <input pInputText id="on_prenom" formControlName="prenom" autocomplete="off" />
+      <label for="on_prenom">Prénom</label>
+    </p-floatlabel>
+  </div>
+  <div>
+    <label for="buttondisplay" class="font-bold block mb-2">Date de naissance</label>
+    <p-datepicker formControlName="dateNaissance" [showIcon]="true" inputId="buttondisplay" [showOnFocus]="false" ></p-datepicker>
+
+    @if(this.form.get('dateNaissance')?.value) {
+      <p>
+        Âge : {{ age }}
+      </p>
+    }
+  </div>
+  <p-footer>
+    <p-button type="button" label="Annuler" icon="pi pi-times" (click)="dialogRef.close()"></p-button>
+    <p-button type="button" label="Enregistrer" icon="pi pi-check" (click)="onSubmit()"></p-button>
+  </p-footer>
+</form>
