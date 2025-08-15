@@ -1,43 +1,38 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  inject,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogService } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { Enfant } from '../model/enfant';
-import { Formulaire } from '../formulaire/formulaire';
-import { UuidService } from '@assistante-maternelle/core';
+import { DialogModule } from 'primeng/dialog';
+import { Router } from '@angular/router';
+import { EnfantStore } from '@assistante-maternelle/core';
 
 @Component({
   selector: 'enfant-liste',
-  imports: [CommonModule, TableModule, ButtonModule],
+  imports: [CommonModule, TableModule, ButtonModule, DialogModule],
   providers: [DialogService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Ajout pour supporter les Web Components
   templateUrl: './liste.html',
   styleUrl: './liste.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Liste {
-  private readonly _uuid = new UuidService();
-  private readonly _dialogService = inject(DialogService);
-  enfants = signal<Enfant[]>([
-    {
-      id: this._uuid.generateUuid(),
-      genre: 'Garçon',
-      nom: 'Martin',
-      prenom: 'Jean',
-      dateNaissance: new Date(2022, 5, 10),
-    },
-    {
-      id: this._uuid.generateUuid(),
-      genre: 'Fille',
-      nom: 'Dupont',
-      prenom: 'Claire',
-      dateNaissance: new Date(2020, 8, 20),
-    },
-  ]);
-  openDialog(enfant?: Enfant): void {
-    this._dialogService.open(Formulaire, {
-      data: enfant,
-      header: enfant ? 'Modifier un enfant' : 'Ajouter un enfant',
-      width: '30%',
+  private readonly _store = inject(EnfantStore);
+  title = signal<string | null>('Modifier');
+  router = inject(Router);
+  enfants = this._store.enfants;
+
+  navigateToFormulaire(title: string, enfant?: Enfant) {
+    this._store.selectEnfant(enfant?.id);
+    this.router.navigate(['/formulaire'], {
+      queryParams: { title }, // Utilisez des queryParams
     });
   }
 }

@@ -1,13 +1,17 @@
-import { Component, computed, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { calculerAgeEnfant, UuidService } from '@assistante-maternelle/core';
+import { calculerAgeEnfant, EnfantStore } from '@assistante-maternelle/core';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -15,11 +19,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DatePickerModule } from 'primeng/datepicker';
 import { Enfant, GenreEnfant } from '../model/enfant';
 import { FormGroupEnfant } from '../model/form';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'enfant-formulaire',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     ButtonModule,
     SelectButtonModule,
@@ -28,61 +32,65 @@ import { FormGroupEnfant } from '../model/form';
     DatePickerModule,
   ],
   templateUrl: './formulaire.html',
-  styleUrl: './formulaire.css',
+  styleUrls: ['./formulaire.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Formulaire {
-  private readonly _uuid = new UuidService();
-  enfant = computed(() => {
-    if (this.config?.data) {
-      return this.config.data as Enfant;
-    }
-    return this.getDefaultEnfant();
-  });
-  dialogRef = inject(DynamicDialogRef);
-  config = inject(DynamicDialogConfig);
+  private readonly _store = inject(EnfantStore);
+
+  //title = signal<string>(''); // Titre passé via la route
+  enfant = this._store.enfantSelectionne();
+
+  private readonly router = inject(Router);
+
+  routeActive = inject(ActivatedRoute);
+  private readonly routeActiveQueryParams = toSignal(
+    this.routeActive.queryParams
+  );
+  title = computed(
+    () => this.routeActiveQueryParams()?.['title'] || 'Formulaire'
+  );
+
   form: FormGroup<FormGroupEnfant> = new FormGroup<FormGroupEnfant>({
-    genre: new FormControl<GenreEnfant>(
-      this.enfant().genre || 'Garçon',
+    genre: new FormControl<GenreEnfant>(this.enfant.genre, [
+      Validators.required,
+    ]),
+    dateNaissance: new FormControl<Date>(
+      this.enfant.dateNaissance,
       Validators.required
     ),
-    dateNaissance: new FormControl<string>(
-      this.enfant().dateNaissance.toISOString(),
-      Validators.required
-    ),
-    nom: new FormControl<string | null>(this.enfant().nom, Validators.required),
-    prenom: new FormControl<string | null>(
-      this.enfant().prenom,
-      Validators.required
-    ),
+    nom: new FormControl<string | null>(this.enfant.nom, [
+      Validators.required,
+      Validators.minLength(1),
+    ]),
+    prenom: new FormControl<string | null>(this.enfant.prenom, [
+      Validators.required,
+      Validators.minLength(1),
+    ]),
   });
 
   onSubmit(): void {
     if (this.form.valid) {
-      const enfantSaisie = this.form.value as Partial<Enfant>;
-      // Création de l'objet enfant avec traitement des champs potentiellement vides ou mal typés
-      const enfantData: Enfant = {
-        id: this.enfant()?.id ?? this._uuid.generateUuid(),
-        genre: enfantSaisie.genre ?? 'Garçon',
-        nom: enfantSaisie.nom ?? '',
-        prenom: enfantSaisie.prenom ?? '',
-        dateNaissance: new Date(enfantSaisie.dateNaissance ?? ''),
+      const rawDate = this.form.get('dateNaissance')?.value || '';
+      const dateNaissance = new Date(rawDate);
+
+      const enfant: Enfant = {
+        id: this.enfant.id,
+        genre: this.form.get('genre')?.value || 'Garçon',
+        nom: this.form.get('nom')?.value || '',
+        prenom: this.form.get('prenom')?.value || '',
+        dateNaissance,
       };
 
-      this.dialogRef.close(enfantData);
+      // Sauvegarder (simulation)
+      console.log('Enfant enregistré :', enfant);
+
+      this.router.navigate(['/']); // Retourne à la liste
     }
   }
 
-  calculateAge(value: string) {
-    return calculerAgeEnfant(value);
-  }
-  private getDefaultEnfant(): Enfant {
-    return {
-      id: this._uuid.generateUuid(),
-      genre: 'Garçon',
-      nom: '',
-      prenom: '',
-      dateNaissance: new Date(),
-    };
+  onCancel(): void {
+    this.router.navigate(['/']); // Redirige vers la liste
   }
   get age(): string {
     const dateNaissance = this.form.get('dateNaissance')?.value;

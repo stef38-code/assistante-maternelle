@@ -7,4 +7,9 @@ export const appRoutes: Route[] = [
       import('@assistante-maternelle/enfant').then((m) => m.Liste),
     pathMatch: 'full',
   },
+  {
+    path: 'formulaire', // Ajout de la route pour le formulaire
+    loadComponent: () =>
+      import('@assistante-maternelle/enfant').then((m) => m.Formulaire),
+  },
 ];

@@ -1,1 +1,1 @@
-export * from './lib/infrastructure/infrastructure';
+export * from './lib/infrastructure/services/enfant-service';

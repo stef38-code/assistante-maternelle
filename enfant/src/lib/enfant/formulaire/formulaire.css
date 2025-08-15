@@ -1,0 +1,24 @@
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 1rem; /* Ajoute un espacement inférieur standard */
+}
+
+.actions {
+  margin-top: 2rem; /* Ajoute un espace au-dessus des boutons */
+  display: flex; /* Active Flexbox */
+  justify-content: center; /* Centre les boutons horizontalement */
+  gap: 1rem; /* Ajoute un espace entre les deux boutons */
+}
+

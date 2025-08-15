@@ -1,9 +1,9 @@
-export function calculerAgeEnfant(dateNaissance: string): string {
+export function calculerAgeEnfant(dateNaissance: Date): string {
   if (!dateNaissance) {
     return 'Date invalide';
   }
 
-  const birthDate = new Date(dateNaissance);
+  const birthDate = dateNaissance;
   const today = new Date();
 
   const age = today.getFullYear() - birthDate.getFullYear();

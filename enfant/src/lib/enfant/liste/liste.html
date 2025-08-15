@@ -1,6 +1,7 @@
 <p-button label="Ajouter un enfant" icon="pi pi-plus"
-          onKeyDown="openDialog()"
-          (click)="openDialog()"></p-button>
+          (click)="navigateToFormulaire('Ajouter')"
+          (keydown)="navigateToFormulaire('Ajouter')"
+></p-button>
 <p-table [value]="enfants()">
   <ng-template pTemplate="header">
     <tr>
@@ -20,11 +21,10 @@
       <td>
         <p-button label="Modifier"
                   icon="pi pi-pencil"
-                  onKeyDown="openDialog(enfant)"
-                  (click)="openDialog(enfant)"></p-button>
+                  (click)="navigateToFormulaire('Modifier', enfant)"
+                  (keydown)="navigateToFormulaire('Modifier', enfant)"
+        ></p-button>
       </td>
     </tr>
   </ng-template>
 </p-table>
-
-
