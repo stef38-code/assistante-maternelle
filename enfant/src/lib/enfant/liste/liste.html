@@ -1,8 +1,29 @@
-<p-button label="Ajouter un enfant" icon="pi pi-plus"
-          (click)="navigateToFormulaire('Ajouter')"
-          (keydown)="navigateToFormulaire('Ajouter')"
-></p-button>
-<p-table [value]="enfants()">
+<h1>Liste des enfants</h1>
+<p-table #dt1 [value]="enfants()"
+         stripedRows
+         [globalFilterFields]="['nom', 'prenom']"
+>
+  <ng-template #caption>
+    <div class="flex">
+      <p-button
+        type="button"
+        pTooltip="Ajouter un enfant"
+        tooltipPosition="bottom"
+        icon="pi pi-plus"
+                (click)="navigateToFormulaire('Ajouter')"
+                (keydown)="navigateToFormulaire('Ajouter')"
+      ></p-button>
+      <div class="flex">
+        <p-iconfield iconPosition="left" class="ml-auto">
+          <p-inputicon>
+            <i class="pi pi-search"></i>
+          </p-inputicon>
+          <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Rechercher un mot-clé" />
+        </p-iconfield>
+        <p-button label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(dt1)" />
+      </div>
+    </div>
+  </ng-template>
   <ng-template pTemplate="header">
     <tr>
       <th scope="col">Genre</th>
@@ -18,12 +39,24 @@
       <td>{{ enfant.nom }}</td>
       <td>{{ enfant.prenom }}</td>
       <td>{{ enfant.dateNaissance | date: 'dd/MM/yyyy' }}</td>
-      <td>
-        <p-button label="Modifier"
-                  icon="pi pi-pencil"
-                  (click)="navigateToFormulaire('Modifier', enfant)"
-                  (keydown)="navigateToFormulaire('Modifier', enfant)"
-        ></p-button>
+      <td class="action-column">
+        <div class="flex justify-content-center button-container">
+          <p-button type="button"
+                    pTooltip="Modifier"
+                    tooltipPosition="bottom"
+                    icon="pi pi-pencil"
+                    severity="success"
+                    (click)="navigateToFormulaire('Modifier', enfant)"
+                    (keydown)="navigateToFormulaire('Modifier', enfant)"></p-button>
+          <p-button type="button"
+                    pTooltip="Supprimer"
+                    tooltipPosition="bottom"
+                    icon="pi pi-trash"
+                    severity="danger"
+                    (click)="supprimerUnEnfant(enfant.id)"
+                    (keydown)="supprimerUnEnfant(enfant.id)"
+          ></p-button>
+        </div>
       </td>
     </tr>
   </ng-template>
