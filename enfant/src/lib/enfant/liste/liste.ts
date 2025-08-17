@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  CUSTOM_ELEMENTS_SCHEMA,
-  inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Table, TableModule } from 'primeng/table';
@@ -17,6 +11,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'enfant-liste',
@@ -29,6 +24,7 @@ import { InputTextModule } from 'primeng/inputtext';
     IconFieldModule,
     InputIconModule,
     InputTextModule,
+    ReactiveFormsModule,
   ],
   providers: [DialogService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Ajout pour supporter les Web Components
@@ -42,6 +38,8 @@ export class Liste {
   router = inject(Router);
   enfants = this._store.enfants;
   searchValue: string | undefined;
+  globalFilterFromControl = new FormControl<string>('');
+
   navigateToFormulaire(title: string, enfant?: Enfant) {
     this._store.selectEnfant(enfant?.id);
     this.router.navigate(['/formulaire'], {
@@ -55,6 +53,6 @@ export class Liste {
 
   clear(table: Table) {
     table.clear();
-    this.searchValue = '';
+    this.globalFilterFromControl.setValue('');
   }
 }

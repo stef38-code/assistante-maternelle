@@ -1,26 +1,42 @@
 <h1>Liste des enfants</h1>
-<p-table #dt1 [value]="enfants()"
+<p-table #dt1
+         [value]="enfants()"
+         dataKey="id"
          stripedRows
          [globalFilterFields]="['nom', 'prenom']"
 >
   <ng-template #caption>
-    <div class="flex">
-      <p-button
-        type="button"
-        pTooltip="Ajouter un enfant"
-        tooltipPosition="bottom"
-        icon="pi pi-plus"
-                (click)="navigateToFormulaire('Ajouter')"
-                (keydown)="navigateToFormulaire('Ajouter')"
-      ></p-button>
-      <div class="flex">
-        <p-iconfield iconPosition="left" class="ml-auto">
-          <p-inputicon>
-            <i class="pi pi-search"></i>
-          </p-inputicon>
-          <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Rechercher un mot-clé" />
-        </p-iconfield>
-        <p-button label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(dt1)" />
+    <div class="grid">
+      <div class="col-4">
+        <p-button
+          type="button"
+          pTooltip="Ajouter un enfant"
+          tooltipPosition="bottom"
+          icon="pi pi-plus"
+          (click)="navigateToFormulaire('Ajouter')"
+          (keydown)="navigateToFormulaire('Ajouter')"
+        ></p-button>
+      </div>
+      <div class="col-4 col-offset-4">
+        <div class="flex">
+          <p-iconfield iconPosition="left" class="ml-auto">
+            <p-inputicon>
+              <i class="pi pi-search"></i>
+            </p-inputicon>
+            <input pInputText type="text"
+                   [formControl]="globalFilterFromControl"
+                   (input)="dt1.filterGlobal(globalFilterFromControl.value, 'contains')"
+                   placeholder="Rechercher un mot-clé" />
+          </p-iconfield>
+          <p-button
+            type="button"
+            label="Clear"
+            [outlined]="true"
+            icon="pi pi-filter-slash"
+            (click)="clear(dt1)"
+            (keydown)="clear(dt1)"
+          />
+        </div>
       </div>
     </div>
   </ng-template>
