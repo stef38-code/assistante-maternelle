@@ -3,12 +3,3 @@
 .action-column {
   min-width: auto;
 }
-
-/* Gère l'espacement entre les boutons */
-.button-container {
-  display: flex; /* Définit un conteneur flex */
-  justify-content: center; /* Centre les boutons horizontalement */
-  gap: 1rem; /* Espacement horizontal de 1rem entre les boutons */
-  align-items: center; /* S'assure que les boutons sont bien alignés verticalement */
-}
-

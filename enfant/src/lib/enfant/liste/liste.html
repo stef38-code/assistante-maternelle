@@ -13,8 +13,8 @@
           pTooltip="Ajouter un enfant"
           tooltipPosition="bottom"
           icon="pi pi-plus"
-          (click)="navigateToFormulaire('Ajouter')"
-          (keydown)="navigateToFormulaire('Ajouter')"
+          (click)="versFormulaireNouvelEnfant()"
+          (keydown)="versFormulaireNouvelEnfant()"
         ></p-button>
       </div>
       <div class="col-4 col-offset-4">
@@ -33,8 +33,8 @@
             label="Clear"
             [outlined]="true"
             icon="pi pi-filter-slash"
-            (click)="clear(dt1)"
-            (keydown)="clear(dt1)"
+            (click)="effacerFiltreGlobal(dt1)"
+            (keydown)="effacerFiltreGlobal(dt1)"
           />
         </div>
       </div>
@@ -56,23 +56,7 @@
       <td>{{ enfant.prenom }}</td>
       <td>{{ enfant.dateNaissance | date: 'dd/MM/yyyy' }}</td>
       <td class="action-column">
-        <div class="flex justify-content-center button-container">
-          <p-button type="button"
-                    pTooltip="Modifier"
-                    tooltipPosition="bottom"
-                    icon="pi pi-pencil"
-                    severity="success"
-                    (click)="navigateToFormulaire('Modifier', enfant)"
-                    (keydown)="navigateToFormulaire('Modifier', enfant)"></p-button>
-          <p-button type="button"
-                    pTooltip="Supprimer"
-                    tooltipPosition="bottom"
-                    icon="pi pi-trash"
-                    severity="danger"
-                    (click)="supprimerUnEnfant(enfant.id)"
-                    (keydown)="supprimerUnEnfant(enfant.id)"
-          ></p-button>
-        </div>
+        <enfant-liste-action-table-line [enfant]="enfant"></enfant-liste-action-table-line>
       </td>
     </tr>
   </ng-template>

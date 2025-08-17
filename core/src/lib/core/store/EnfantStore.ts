@@ -47,6 +47,13 @@ export const EnfantStore = signalStore(
       patchState(store, {
         enfantSelectionne: enfantService.rechercherEnfant(id),
       });
+    },
+    nouvelEnfant() {
+      // Recherche l'enfant par son ID dans la liste des enfants
+      // Et mise à jour du signal enfantSelectionne
+      patchState(store, {
+        enfantSelectionne: enfantService.nouvelEnfant()(),
+      });
     }
   })),
   withHooks({

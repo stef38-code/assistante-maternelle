@@ -84,7 +84,7 @@ export class Formulaire {
 
       // Sauvegarder (simulation)
       console.log('Enfant enregistré :', enfant);
-
+      this._store.modifierOuAjouterEnfant(enfant);
       this.router.navigate(['/']); // Retourne à la liste
     }
   }
