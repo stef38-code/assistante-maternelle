@@ -5,7 +5,11 @@ import { differenceInYears, differenceInMonths, isValid } from 'date-fns';
  * @param {Date} dateNaissance - La date de naissance de l'enfant.
  * @return {string} L'âge de l'enfant sous forme de chaîne de caractères. Si la date est invalide, retourne "Date invalide".
  */
-export function calculerAgeEnfant(dateNaissance: Date): string {
+export function calculerAgeEnfant(dateNaissance: Date | undefined | null): string {
+  if (dateNaissance === undefined || dateNaissance === null) {
+    return 'Date non fournie'; // Message clair lorsque l’entrée est null/undefined
+  }
+
   if (!isValid(dateNaissance)) {
     return 'Date invalide';
   }

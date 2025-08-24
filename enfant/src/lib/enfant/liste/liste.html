@@ -4,41 +4,17 @@
          dataKey="id"
          stripedRows
          [globalFilterFields]="['nom', 'prenom']"
->
+         [paginator]="true"
+         showGridlines
+         [rows]="10"
+         [rowsPerPageOptions]="[5, 10, 20]"
+         [sortField]="'nom'"
+         [sortOrder]="1">
   <ng-template #caption>
-    <div class="grid">
-      <div class="col-4">
-        <p-button
-          type="button"
-          pTooltip="Ajouter un enfant"
-          tooltipPosition="bottom"
-          icon="pi pi-plus"
-          (click)="versFormulaireNouvelEnfant()"
-          (keydown)="versFormulaireNouvelEnfant()"
-        ></p-button>
-      </div>
-      <div class="col-4 col-offset-4">
-        <div class="flex">
-          <p-iconfield iconPosition="left" class="ml-auto">
-            <p-inputicon>
-              <i class="pi pi-search"></i>
-            </p-inputicon>
-            <input pInputText type="text"
-                   [formControl]="globalFilterFromControl"
-                   (input)="dt1.filterGlobal(globalFilterFromControl.value, 'contains')"
-                   placeholder="Rechercher un mot-clé" />
-          </p-iconfield>
-          <p-button
-            type="button"
-            label="Clear"
-            [outlined]="true"
-            icon="pi pi-filter-slash"
-            (click)="effacerFiltreGlobal(dt1)"
-            (keydown)="effacerFiltreGlobal(dt1)"
-          />
-        </div>
-      </div>
-    </div>
+      <!-- Bouton Clear -->
+      <enfant-caption-table
+        [dt]="dt1"
+      />
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
@@ -51,10 +27,12 @@
   </ng-template>
   <ng-template pTemplate="body" let-enfant>
     <tr>
-      <td>{{ enfant.genre }}</td>
-      <td>{{ enfant.nom }}</td>
-      <td>{{ enfant.prenom }}</td>
-      <td>{{ enfant.dateNaissance | date: 'dd/MM/yyyy' }}</td>
+      <td>
+        <enfant-image-genre [genre]="enfant?.genre"></enfant-image-genre>
+      </td>
+      <td>{{ enfant?.nom ?? 'Inconnu' }}</td>
+      <td>{{ enfant?.prenom ?? 'Inconnu' }}</td>
+      <td>{{ enfant?.dateNaissance | date: 'dd/MM/yyyy'}}</td>
       <td class="action-column">
         <enfant-liste-action-table-line [enfant]="enfant"></enfant-liste-action-table-line>
       </td>

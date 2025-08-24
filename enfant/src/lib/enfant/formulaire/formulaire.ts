@@ -85,12 +85,12 @@ export class Formulaire {
       // Sauvegarder (simulation)
       console.log('Enfant enregistré :', enfant);
       this._store.modifierOuAjouterEnfant(enfant);
-      this.router.navigate(['/']); // Retourne à la liste
+      this.router.navigate(['enfant','liste']); // Retourne à la liste
     }
   }
 
   onCancel(): void {
-    this.router.navigate(['/']); // Redirige vers la liste
+    this.router.navigate(['enfant','liste']); // Redirige vers la liste
   }
   get age(): string {
     const dateNaissance = this.form.get('dateNaissance')?.value;

@@ -61,4 +61,6 @@ export class EnfantService {
   public supprimerEnfant(id: string): void {
     this.enfantsData = this.enfantsData.filter((enfant) => enfant.id !== id);
   }
+
+
 }

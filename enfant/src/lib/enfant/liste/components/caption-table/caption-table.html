@@ -1,0 +1,30 @@
+<div class="grid align-items-center">
+  <div class="sm:col-4">
+    <enfant-button-ajouter-modifier
+      [titreBouton]="'Ajouter un enfant'"
+      [actionBouton]="'Ajouter'"
+      [iconeBouton]="'pi pi-plus'"
+    />
+  </div>
+  <p-iconfield>
+    <p-inputicon class="pi pi-search" />
+    <input
+      pInputText
+      type="text"
+      [formControl]="globalFilterFromControl"
+      (input)="filtrerGlobal()"
+      placeholder="Rechercher un mot-clé"
+    />
+  </p-iconfield>
+  @if (dt()) {
+    <p-button
+      type="button"
+      label="Clear"
+      [outlined]="true"
+      icon="pi pi-filter-slash"
+      class="p-button-sm"
+      (click)="effacerFiltreGlobal()"
+      (keydown)="effacerFiltreGlobal()"
+    ></p-button>
+  }
+</div>

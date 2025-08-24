@@ -3,21 +3,25 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   inject,
+  Signal,
   signal,
+  WritableSignal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Table, TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { Router } from '@angular/router';
 import { EnfantStore } from '@assistante-maternelle/core';
 import { TooltipModule } from 'primeng/tooltip';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { ActionTableLineEnfant } from './components/action-table-line-enfant';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ActionTableLineEnfant } from './components/liste-action-table/action-table-line-enfant';
+import { Enfant } from '../model/enfant';
+import { ImageGenre } from './components/image-genre/image-genre';
+import { CaptionTable } from './components/caption-table/caption-table';
 
 @Component({
   selector: 'enfant-liste',
@@ -32,6 +36,8 @@ import { ActionTableLineEnfant } from './components/action-table-line-enfant';
     InputTextModule,
     ReactiveFormsModule,
     ActionTableLineEnfant,
+    ImageGenre,
+    CaptionTable,
   ],
   providers: [DialogService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Ajout pour supporter les Web Components
@@ -41,23 +47,15 @@ import { ActionTableLineEnfant } from './components/action-table-line-enfant';
 })
 export class Liste {
   private readonly _store = inject(EnfantStore);
-  title = signal<string | null>('Modifier');
-  router = inject(Router);
-  enfants = this._store.enfants;
-  globalFilterFromControl = new FormControl<string>('');
+  title: WritableSignal<string | null> = signal<string | null>('Modifier');
 
-  versFormulaireNouvelEnfant() {
-    this._store.nouvelEnfant();
-    this.router.navigate(['/formulaire'], {
-      queryParams: { title : 'Ajouter'}, // Utilisez des queryParams
-    });
+  enfants: Signal<Enfant[]> = this._store.enfants;
+
+  constructor() {
+    // this.globalFilterFromControl.valueChanges.pipe(
+    //   debounceTime(300), // Attendre 300ms après une frappe
+    //   distinctUntilChanged() // Traiter uniquement les valeurs uniques
+    // ).subscribe(value => dt1.filterGlobal(value, 'contains'));
   }
-  /**
-   * Vide la table et le filtre global.
-  * @param table
-  */
-  effacerFiltreGlobal(table: Table) {
-    table.clear();
-    this.globalFilterFromControl.setValue('');
-  }
+
 }

@@ -14,9 +14,9 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Router } from '@angular/router';
 import { Enfant } from '@assistante-maternelle/enfant';
 import { EnfantStore } from '@assistante-maternelle/core';
+import { ButtonAjouterModifier } from '../button-ajouter-modifier/button-ajouter-modifier';
 
 @Component({
   selector: 'enfant-liste-action-table-line',
@@ -30,6 +30,7 @@ import { EnfantStore } from '@assistante-maternelle/core';
     InputIconModule,
     InputTextModule,
     ReactiveFormsModule,
+    ButtonAjouterModifier,
   ],
   providers: [DialogService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Ajout pour supporter les Web Components
@@ -37,17 +38,9 @@ import { EnfantStore } from '@assistante-maternelle/core';
   styleUrl: './action-table-line-enfant.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActionTableLineEnfant{
-  private readonly _router = inject(Router);
+export class ActionTableLineEnfant {
   private readonly _store = inject(EnfantStore);
   enfant = input.required<Enfant>();
-
-  versFormulaireEnfantEXistant() {
-    this._store.selectEnfant(this.enfant().id);
-    this._router.navigate(['/formulaire'], {
-      queryParams: { title:'Modifier' }, // Utilisez des queryParams
-    });
-  }
   supprimerEnfantExistant() {
     this._store.supprimerEnfant(this.enfant().id);
   }

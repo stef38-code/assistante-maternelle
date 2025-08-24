@@ -1,0 +1,16 @@
+
+.grid {
+  align-items: center;
+
+  .col-12 {
+    margin-bottom: 1rem;
+  }
+  input {
+    min-width: 200px;
+  }
+
+  button {
+    white-space: nowrap;
+  }
+
+}

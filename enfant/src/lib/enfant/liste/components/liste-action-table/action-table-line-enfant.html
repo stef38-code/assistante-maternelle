@@ -1,11 +1,10 @@
 <div class="flex justify-content-center button-container">
-  <p-button type="button"
-            pTooltip="Modifier"
-            tooltipPosition="bottom"
-            icon="pi pi-pencil"
-            severity="success"
-            (click)="versFormulaireEnfantEXistant()"
-            (keydown)="versFormulaireEnfantEXistant()"></p-button>
+  <enfant-button-ajouter-modifier
+    [titreBouton]="'Modifier un enfant'"
+    [actionBouton]="'Modifier'"
+    [iconeBouton]="'pi pi-pencil'"
+    [enfant]="enfant()"
+  />
   <p-button type="button"
             pTooltip="Supprimer"
             tooltipPosition="bottom"
